@@ -8,6 +8,7 @@ create table usuario (
 	nombre varchar(40) not null,
 	apellido varchar(40) not null,
 	roll int not null,
+	foreign key (roll) references roll(id)
 );
 
 create table venta(
