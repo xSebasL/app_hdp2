@@ -13,9 +13,11 @@ create table usuario (
 
 create table venta(
 	id int primary key identity (1,1) not null,
-	fecha date
-	vendedor int not null,
-	foreign key (vendedor) references usuario (id)
+	producto int,
+	fecha date,
+	cliente int not null,
+	foreign key (producto) references producto(id),
+	foreign key (cliente) references cliente (id)
 );
 
 create table roll (
@@ -33,12 +35,29 @@ create table cliente (
 create table producto (
 	id int primary key identity (1,1) not null,
 	nombre varchar(40),
-	precio decimal(10,2),
-	categoria int not null,
-	foreign key (categoria) references categoria (id)
+	precio int not null
 );
 
-create table categoria(
+
+/*create table categoria(
 	id int primary key identity (1,1) not null,
 	nombre varchar(50)
-)
+);*/
+
+drop table categoria;
+
+insert into roll (descripcion) values ('administrador');
+insert into roll (descripcion) values ('vendedor');
+
+insert into usuario (usuario,clave,nombre,apellido,roll) values ('sebasl','123456','sebastian','lopez',1);
+insert into usuario (usuario,clave,nombre,apellido,roll) values ('luism','123456','luis','mena',2);
+
+insert into categoria (nombre) values ('tecnologia');
+insert into categoria (nombre) values ('hogar');
+
+select id,usuario,clave,nombre,apellido,roll from usuario where id=1;
+select * from usuario;
+select * from roll;
+select * from producto;
+select * from categoria;
+select * from venta;
